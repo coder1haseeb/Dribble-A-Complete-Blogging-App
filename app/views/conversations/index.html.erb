@@ -1,0 +1,59 @@
+<div class="main_div_for_the_coversation_page">
+
+  <div class="left_side_all_users_dialouge_box_div">
+    <div class="top_heading_for_all_users_conversation">
+      Create a Conversation
+    </div>
+
+    <div class="all_users_div_for_the_conversation_lower">
+      <% @users.each do |user| %>
+        <% if user.id != current_user.id %>
+          <%= form_with(url: conversations_path, method: :post) do |form| %>
+            <%= form.hidden_field :sender_id, value: current_user.id %>
+            <%= form.hidden_field :recepient_id, value: user.id %>
+            
+          <% conversation_exists = @conversations.exists?(['(sender_id = ? AND recepient_id = ?) OR (sender_id = ? AND recepient_id = ?)', current_user.id, user.id, user.id, current_user.id]) %>
+          
+          <% if conversation_exists %>
+            <%= form.submit "Chat with #{user.name}", class: "create_a_conversation_with_user_button btn btn-outline-success" %>
+          <% else %>
+            <%= form.submit "Create Conversation with #{user.name}", class: "create_a_conversation_with_user_button btn btn-outline-success" %>
+          <% end %>
+                      
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="right_side_existing_conversation_div">
+
+    <div class="top_heading_for_all_users_conversation">
+      Send Messages
+    </div>
+
+    <div class="all_users_div_for_the_conversation_lower">
+      <% @conversations.each do |conversation| %>
+        <% if conversation.sender_id == current_user.id || conversation.recepient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% recepient = User.find(conversation.recepient_id) %>
+          <% else %>
+            <% recepient = User.find(conversation.sender_id) %>
+          <% end %>
+
+          <% unless current_user.id == recepient.id %>
+            <div class="columns" style="margin: 1rem 0;">
+              <div class="column">
+                <div class="inline-block">
+                  <%= link_to "Send a Message to #{recepient.name}", conversation_messages_path(conversation) , class: "link_for_seding_messages_to_the_user" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+
+</div>

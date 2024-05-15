@@ -1,0 +1,61 @@
+<div>
+  <div id="<%= dom_id(shot) %>" class="single_shot_div">
+    <div class="upper_image_div">
+      <div class="image_show_div">
+        <%= link_to shot do %>
+          <% if shot.image.attached? %>
+            <%= image_tag(shot.image, height: "100%;", class: "shot-image") %>
+          <% end %>
+        <% end %>
+        <div class="info_div info-hidden">
+          <div class="title_for_shot">
+            <%= shot.title %>
+          </div>
+          <div class="desc_for_shot">
+            <%= simple_format(shot.description) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="show_time_of_post">
+      Created <%= time_ago_in_words(shot.created_at) %> ago
+    </div>
+    <div class="icons_div_single_post">
+      <div class="watch_icon">
+        <%= link_to shot do %>
+          <%= shot.impressionist_count%> <i class="fa fa-eye"></i>
+        <% end %>
+      </div>
+      <div class="watch_icon">
+        <%= link_to shot do %>
+          <%= shot.comments.count%> <i class="fa fa-comment"></i>
+        <% end %>
+      </div>
+      <div class="watch_icon">
+        <%if user_signed_in?%>
+          <% if current_user.liked? shot %>
+            <%= link_to unlike_shot_path(shot) , data: {turbo_method: :put} , class: "unlike_shot" do %>
+              <%= shot.get_likes.size%> <i class="fa fa-heart text-danger"></i>
+            <% end %>
+          <%else%>
+            <%= link_to like_shot_path(shot) , data: {turbo_method: :put} , class: "like_shot" do %>
+              <%= shot.get_likes.size%> <i class="fa fa-heart"></i>
+            <% end %> 
+          <% end %>
+        <%else%>
+          <%= link_to like_shot_path(shot) , data: {turbo_method: :put} , class: "like_shot" do %>
+            <%= shot.get_likes.size%> <i class="fa fa-heart"></i>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="user_info_div_single_post">
+    <div class="image_of_post_user">
+      <%= image_tag(shot.user.image, height: "35rem", width: "35rem", style: "border-radius: 50%;") %>
+    </div>
+    <div class="name_post_user_div">
+      <%= shot.user.name%>
+    </div>
+  </div>
+</div>

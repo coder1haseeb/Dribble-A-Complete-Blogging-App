@@ -1,0 +1,79 @@
+<div class="current_user_outer_div_profile">
+    <div class="inner_div_for_current_user_profile">
+        <div class="left_side_profile_info_div_curret_user">
+            <div class="upper_left_current_image_div">
+                <%= image_tag(current_user.image, style: 'object-fit: cover; border-radius: 50%; height: 18rem; width: 18rem;') %>
+            </div>
+            <div class="lower_profile_left_current_user_div">
+                <div class="name_of_user_upper_part">
+                    <%= current_user.name%>
+                </div>
+                <div class="email_of_user_upper_part">
+                    <%= current_user.email%>
+                </div>
+                <div class="follwoing_and_followers_count_div">
+                    <div class="following_uppper_profile_div">
+                        <span><%= current_user.following.count%></span> Follwoing
+                    </div>
+                    <div class="followers_uppper_profile_div">
+                        <span><%= current_user.followers.count%></span> Followers
+                    </div>
+                </div>
+                <div class="following_uppper_profile_div">
+                    <span style="font-size : 1.3rem;"><%= pluralize(current_user.shots.count, "Shot")%></span>
+                    <%= link_to my_shots_path , style: "text-decoration: none; color : black; font-size : 1.2rem;" do %>
+                        (<%if current_user.shots.count > 0%>
+                            View
+                        <%else%>
+                            Create
+                        <%end%>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>)
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="right_side_follower_and_following_div">
+            <div class="following_div_current_user">
+                <div class="heading_of_following_user_div">
+                    Following
+                </div>
+                <div class="display_of_following_user_div">
+                    <% if current_user.following.count > 0 %>
+                        <% current_user.following.each do |follower| %>
+                            <div class="inner_single_follower_following_div">
+                                <%= link_to  profile_path(follower.id), style: "text-decoration: none; color: black; font-size: 1.2rem; display: flex; align-items : center;" do %>
+                                <%= image_tag(follower.image, height: "40rem", width: "40rem", style: 'border-radius: 50%;') %>
+                                You are following to<%=" "%><%= follower.name %>.
+                                <%= button_to "Unfollow", unfollow_path(follower), class: "btn btn-outline-primary" ,style: "margin-left : 1rem;" %>
+                                <% end %>
+                            </div>
+                        <%end%>
+                    <%else%>
+                        <h5 style="text-align : center;">Not Following anyone Yet!</h5>
+                    <% end %>
+                </div>
+            </div>
+            <div class="following_div_current_user">
+                <div class="heading_of_following_user_div">
+                    Followers
+                </div>
+                <div class="display_of_following_user_div">
+                    <% if current_user.followers.count > 0 %>
+                        <% current_user.followers.each do |follower| %>
+                            <div class="inner_single_follower_following_div">
+                                <%= link_to  profile_path(follower.id), style: "text-decoration: none; color: black; font-size: 1.2rem;" do %>
+                                <%= image_tag(follower.image, height: "40rem", width: "40rem", style: 'border-radius: 50%;') %>
+                                <%= follower.name %> following you.
+                                <% end %>
+                            </div>
+                        <%end%>
+                    <%else%>
+                        <h5 style="text-align : center;">No Followers Yet!</h5>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

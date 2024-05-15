@@ -1,0 +1,12 @@
+<div>
+    <% current_user.followers.each do |follower| %>
+        <%= image_tag(follower.image , height: "40rem" , width: "40rem" , style: 'border-radius: 50%;')%>
+        <%= follower.name%> following you and his email is <%= follower.email%>
+    <%end%>
+</div>
+<div>
+    <% current_user.following.each do |follower| %>
+        <%= image_tag(follower.image , height: "40rem" , width: "40rem" , style: 'border-radius: 50%;')%>
+        <%= follower.name%> you are follwoing to <%= follower.email%>
+    <%end%>
+</div>

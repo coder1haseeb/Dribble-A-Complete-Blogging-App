@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-edit-container {
+      display: flex;
+      max-width: 80vw;
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+    }
+
+    .profile-info {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .profile-info h2 {
+      font-size: 24px;
+    }
+
+    .profile-info p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .profile-edit-form {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .profile-edit-form h2 {
+      font-size: 24px;
+    }
+
+    .field {
+      margin: 10px 0;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-account {
+      margin-top: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #007BFF;
+      font-size: 16px;
+    }
+    .image_show_edit_profile{
+      display: flex;
+      align-items : center;
+      justify-content : center;
+    }
+    .image_show_edit_profile img{
+      height: 18rem;
+      width: 18rem;
+      display: flex;
+      align-items : center;
+      justify-content : center;
+      border-radius : 50%;
+      object-fit : cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-edit-container">
+    <div class="profile-info">
+      <h2 style="text-align: center;">Edit Profile</h2>
+      <div class="image_show_edit_profile">
+        <%= image_tag(current_user.image) %>
+      </div>
+      <p>Name: <strong><%= current_user.name %></strong></p>
+      <p>Email: <strong><%= current_user.email %></strong></p>
+    </div>
+
+    <div class="profile-edit-form">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, placeholder: "Your Name", autofocus: true, autocomplete: "off" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :image, class: 'label_div_form' %><br />
+          <%= f.file_field :image, class: 'input_div_form', autofocus: true, autocomplete: "off" %>
+        </div>
+
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, placeholder: "Your Email", autocomplete: "off" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, placeholder: "New Password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_password %>
+          <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, placeholder: "Current Password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update", class: "btn btn-success" %>
+        </div>
+      <% end %>
+      <div class="delete-account">
+        <h4>Delete my account</h4>
+        <p>
+          <%= button_to "Delete", registration_path(resource_name), data: { turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

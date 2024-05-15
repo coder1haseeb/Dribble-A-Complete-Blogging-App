@@ -1,0 +1,53 @@
+<div class="outer_most_show_profile_div">
+
+    <div class="show_profile_upper_image_and_info_div">
+        <div class="left_side_profile_upper_image_div">
+            <%= image_tag(@user.image, style: 'object-fit: cover; border-radius: 50%; height: 18rem; width: 18rem;') %>
+        </div>
+        <div class="right_side_profile_upper_div_info">
+            <div class="name_of_user_upper_part">
+                <%= @user.name%>
+            </div>
+            <div class="email_of_user_upper_part">
+                <%= @user.email%>
+            </div>
+            <div class="follwoing_and_followers_count_div">
+                <div class="following_uppper_profile_div">
+                    <span><%= @user.following.count%></span> Follwoing
+                </div>
+                <div class="followers_uppper_profile_div">
+                    <span><%= @user.followers.count%></span> Followers
+                </div>
+                <div class="action_button_for_follow_uper_part">
+                    
+                    <% if @user.id != current_user.id %>
+                        <% if current_user.following?(@user)%>
+                            <%= button_to "Unfollow" , unfollow_path(@user) , class: "btn btn-outline-primary" , onclick: "window.location.reload();"%>
+                        <% elsif current_user.sent_follow_request_to?(@user)%>
+                            <%= button_to  "Cancel Request" , cancel_path(@user) , class: "btn btn-danger"%>
+                        <% else %>
+                            <%= button_to "Follow" , follow_path(@user) , class: "btn btn-primary" %>
+                    <% end %>
+                        <%end%>
+                        <%= link_to "Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class: "btn btn-outline-primary", onclick: "window.location.href = '#{conversations_path(sender_id: current_user.id, recipient_id: @user.id)}'" %>
+                        </div>
+            </div>
+            <div class="following_uppper_profile_div">
+                <span><%= pluralize(@user.shots.count, "Shot")%></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lower_user_own_shots_all">
+        <% if @user.shots.count > 0%>
+            <% @user.shots.each do |shot| %>
+                <div class="inner_lower_single_shot_display">
+                    <%= render 'shots/shot', shot: shot %>
+                </div>
+            <% end %>
+        <%else%>
+            <h1 style="text-align : center; width : 100%;">No Posts Yet!</h1>
+        <%end%>
+    </div>
+
+</div>

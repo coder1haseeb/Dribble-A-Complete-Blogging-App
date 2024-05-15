@@ -1,0 +1,13 @@
+<%= form_with model: [@shot, @shot.comments.build], local: true do |f| %>
+  <div style="margin: 1rem 0; display : flex; align-items : center;">
+    <%= f.check_box :anonymus , style: "height : 2rem ; width : 2rem ; "%>
+    <%= f.label :anonymus, "Check to create an Anonymous Comment." , style: "font-size : 1.2rem ; font-weight : bold; margin-left : 1rem;" %>
+  </div>
+  
+  <div class="form-floating" style="margin: 1rem 0; ">
+    <%= f.text_area :response, class: "form-control", placeholder: "Leave a comment here", id: "floatingTextarea2", style: "height: 100px; resize: none;" , required: :true %>
+    <%= f.label :response, "Comments" %>
+  </div>
+
+  <%= f.submit 'Post Comment', class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="main_message_sending_page">
+
+  <div class="top_heading_of_the_send_message">
+    <% sender = User.find(@conversation.sender_id) %>
+    <% receiver = User.find(@conversation.recepient_id)%>
+    <% if sender.id == current_user.id%>
+      <span>Send a Chat to <%= receiver.name%> </span>
+    <% else %>
+      <span>Send a Chat to <%= sender.name%> </span>
+    <% end %>
+  </div>
+
+  <div class="lower_messages_div_for_messages_page">
+    <section id="messages-container" class="mb4">
+      <% @messages.each do |message| %>
+        <% if message.body.present? %>
+          <% user = User.find(message.user_id) %>
+          <div class="singel_message_box_div">
+            <div class="user_left_side_image_for_message_page">
+              <%= image_tag(user.image, height: "40rem", width: "40rem", style: 'border-radius: 50%;') %>
+            </div>
+            <div class="right_side_info_of_single_message">
+              <div class="right_side_top_name_and_time_div">
+                <div class="right_side_top_user_name">
+                  <strong><%= user.name %> </strong> 
+                </div>
+                <div class="right_side_top_user_time_for_message">
+                  at <%= message.message_time %>
+                </div>
+              </div>
+              <div class="right_side_bottom_message_body_of_message">
+                <div class="f4"><%= message.body %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </section>
+  </div>
+
+    <div class="see_all_messages_button">
+      <% if @over_ten %>
+        <%= link_to "Show All", "?m=all", class: "btn btn-outline-primary" %>
+      <% else %>
+        <%= link_to "Show Less", conversation_messages_path(@conversation), class: "btn btn-outline-primary" %>
+      <% end %>
+      
+    </div>
+
+  <div class="create_a_message_form_div">
+    <%= form_for [@conversation, @message] do |f| %>
+      <%= f.text_area :body, class: "textarea", placeholder: "Send a message", required: true , class: "input_for_message_text_area_div" %>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+      <div class="text-align-right">
+        <%= f.submit "Send message", class: "button is-link is-large mt3 btn btn-success", style: "position : relative ; left : 50%; transform : translate(-50%);" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,76 @@
+<div class="outer_main_div_for_shots_show">
+
+  <div class="show_main_div">
+    <div class="title_for_shot_show_page">
+      <%= @shot.title %>
+    </div>
+    <div class="time_stamp_for_show">
+      <div class="time_stamp_for_show">
+        <div class="post_info_div">
+          Created by <span class="post_user_show_name"><%= @shot.user.name%></span>
+        </div>
+        <div class="time_for_show">
+          on <span style= "color: black; font-weight: bold"><%= verbose_date(@shot.created_at) %></span>
+        </div>
+      </div>
+      <% if user_signed_in? && @shot.user_id === current_user.id %>
+        <div class="lower_btn_div_for_show_post">
+          <%= link_to "Back to shots", shots_path , class: "btn btn-secondary"%>
+          <%= link_to "Edit ", edit_shot_path(@shot), onclick: "setTimeout(function() { location.reload(); }, 1000);" , class: "btn btn-primary" %>
+          <%= link_to "Delete", @shot, data: { turbo_method: :delete , turbo_confirm: "Are you sure to Delete" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+    <% if @shot.image.present? %>
+      <div class="upper_image_div_for_shot">
+        <%= image_tag(@shot.image, height: "300rem") %>
+      </div>
+    <% end %>
+    <div class="description_for_shot_show_page">
+      <%= simple_format(@shot.description) %>
+    </div>
+    <div class="comments_section_main_div">
+      <div class="total_comments_div_on_top">
+        <%= pluralize(@shot.comments.count , "Comment")%>
+      </div>
+      <div class="render_comments_on_show_page">
+        <%= render @shot.comments%>
+      </div>
+      <div class="form_for_comments_div">
+        <% if user_signed_in?%>
+          <h2>
+            Leave a Reply
+          </h2>
+          <%= render 'comments/form' %>
+        <%else%>
+          <div style="color : black; ">
+            <%= link_to "Sign in" , new_user_session_path , style: "#E600A1"%> to leave a Comment
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  <div class="pannel_for_counts_of_actions">
+    <div class="inner_pannel_div_for_action">
+    <div class="like_div_for_post">
+      <%= render 'likeunlike' ,shot: @shot %>
+    </div>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div><i class="fa fa-heart" style="margin-right : .7rem;"></i>Likes</div>
+          <span class="badge rounded-pill" style="background: #E600A1;"><%= @shot.get_likes.size %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div><i class="fa fa-comment" style="margin-right : .7rem;"></i>Comments</div>
+          <span class="badge rounded-pill" style="background: #E600A1;"><%= @shot.comments.count%></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div><i class="fa fa-eye" style="margin-right : .7rem;"></i>Views</div>
+          <span class="badge rounded-pill" style="background: #E600A1;"><%= @shot.impressionist_count%></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

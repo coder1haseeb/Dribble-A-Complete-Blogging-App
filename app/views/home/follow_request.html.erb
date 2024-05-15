@@ -1,0 +1,31 @@
+<div class="outer_request_main_div">
+    
+    <% if current_user.follow_requests.count > 0 %>
+        <div class="heading_of_follow_requests">
+            Follow Request
+        </div>
+    <%else%>
+        <div class="heading_of_follow_requests">
+            No Request Yet!
+        </div>
+    <% end %>
+    
+
+    <% current_user.follow_requests.each do |request|%>
+        <div class="inner_request_main_div">
+            <div class="inner_request_title_div">
+                <div class="inner_request_title_image_div">
+                    <%= image_tag(request.followerable.image , height: "50rem" , width: "50rem", style: "border-radius : 50%;")%>
+                </div>
+                <div class="inner_request_title_text_div">
+                    <%= request.followerable.name%> want to follow you
+                </div>
+            </div>
+            <div class="buttons_div_accept_decline_for_request">
+                <%= button_to "Accept" , accept_path(request.followerable) , class: "btn btn-success"%>
+                <%= button_to "Decline" , decline_path(request.followerable) , class: "btn btn-danger" , style: "margin-left: 1rem;" , onclick: "window.location.reload();"%>
+            </div>
+        </div>
+    <%end%>
+
+</div>

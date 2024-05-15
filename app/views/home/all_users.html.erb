@@ -1,0 +1,28 @@
+<div class="outer_all_user_div">
+    <div class="messsage_on_the_top_of_users">
+        Wanna follow some Users?
+    </div>
+    <% @users.each do |user| %>
+        <% next if user == current_user %>
+        <div class="single_user_inner_div_all_users">
+            <div class="left_side_picture_of_single_user">
+                <%= image_tag(user.image, height: "50rem", width: "50rem", style: "border-radius: 50%;") %>
+            </div>
+            <div class="right_side_info_of_single_user_all_users">
+                <div class="upper_name_of_user_all_users">
+                    <%= link_to user.name, profile_path(user) %>
+                </div>
+                <div class="lower_email_of_user_all_users">
+                    <%= user.email %>
+                </div>
+                <% if current_user.following?(user) %>
+                    <%= button_to "Unfollow", unfollow_path(user), class: "btn btn-outline-primary", style: "margin-top: .6rem;" %>
+                <% elsif current_user.sent_follow_request_to?(user) %>
+                    <%= button_to "Cancel Request", cancel_path(user), class: "btn btn-danger", style: "margin-top: .6rem;" %>
+                <% else %>
+                    <%= button_to "Follow", follow_path(user), class: "btn btn-primary", style: "margin-top: .6rem;" %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>

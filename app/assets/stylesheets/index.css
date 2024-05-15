@@ -1,0 +1,548 @@
+.outer_form_div_main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);
+    flex-direction: column;
+}
+
+.inner_form_div{
+    width: 380px;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.445);
+    border-radius: 10px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image-preview {
+    max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+}
+.new_create_div_dribble{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;;;
+}
+
+.hide_input{
+    display: none;
+}
+
+.lable_dialouge_box_for_input{
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+    /* border: 4px dashed rgba(128, 128, 128, 0.2); */
+    /* background-color: ; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.label_for_box_input svg{
+    scale: 1.6;
+    margin-left: 1rem;
+}
+.label_for_box_input{
+    font-size: 2rem;
+}
+.label_for_box_input{
+    position: absolute;
+    left: 50%;
+    top: 28%;
+    transform: translate(-50% , -50%);
+    z-index: -3;
+}
+.input_for_shots{
+    margin: 1rem 0;
+}
+.custom_height_for_desc{
+    height: 10rem !important;
+    resize: none;
+}
+.all_shots_div{
+    display: flex;
+    justify-content: start;
+    margin: 2rem;
+    flex-wrap: wrap;
+}
+.single_shot_div {
+    /* height: 0rem; */
+    margin: 1.2rem;
+    width: 20rem;
+    position: relative;
+    overflow: hidden;
+    padding: .7rem;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.445);
+    /* border-radius: 10px; */
+}
+
+.image_show_div {
+    width: 100%;
+    height: 18rem;
+    position: relative;
+}
+
+.shot-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 1s;
+    transform: rotateY(0deg); /* Initial rotation */
+}
+
+.info_div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    transition: transform 1s;
+    transform: rotateY(180deg); /* Initial rotation */
+    pointer-events: none;
+    opacity: 0;
+}
+
+.single_shot_div:hover .shot-image {
+    transform: rotateY(180deg); /* Rotate the image when hovering */
+}
+  
+.single_shot_div:hover .info_div {
+    transform: rotateY(0deg); /* Rotate the text when hovering */
+    opacity: 1;
+}
+
+
+.title_for_shot{
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.desc_for_shot{
+    margin: 0 0.6rem .06rem 0.6rem;
+    overflow: hidden;
+    height: 12rem;
+}
+
+.icons_div_single_post{
+    display: flex;
+    margin-top: 1rem;
+    justify-content: right;
+}
+.watch_icon{
+    margin: 0 0.6rem;
+}
+.watch_icon i{
+    margin: .15rem;
+}
+.show_time_of_post{
+    margin-top: 1rem ;
+    font-size: 1.1rem;
+
+}
+.watch_icon a{
+    text-decoration: none;
+    color: gray;
+}
+.user_info_div_single_post{
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.name_post_user_div{
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.add_a_post_div{
+    height: 24.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+}
+.plus_icon_for_new svg{
+    margin-right: 1rem;
+}
+
+.add_message_for_the_new{
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.for_edit_additional_class{
+    width: 50%;
+}
+.outer_main_div_for_shots_show{
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+    margin: 2rem;
+}
+.show_main_div{
+    width: 60%;
+}
+
+.title_for_shot_show_page{
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.time_stamp_for_show{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+.post_info_div{
+    font-size: 1.2rem;
+}
+
+.post_user_show_name{
+    color: #E600A1;
+    font-weight: bold;
+}
+.time_for_show{
+    margin-left: .5rem;
+}
+.upper_image_div_for_shot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40rem;
+    background-color: rgba(128, 128, 128, 0.1);
+    border-radius: 10px;
+}
+.upper_image_div_for_shot img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.description_for_shot_show_page{
+    font-size: 1.11rem;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: justify;
+}
+
+.pannel_for_counts_of_actions{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+.inner_pannel_div_for_action{
+    width: 80%;
+    margin-top: 09rem;
+}
+
+::selection {
+    background-color: yellow;
+    color: black;
+}
+.total_comments_div_on_top{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.comment_main_div_showing{
+    display: flex;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+}
+.right_side_comment_data{
+    margin-left: 1rem;
+}
+.name_of_the_comment{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.like_div_for_post{
+    margin-bottom: 2rem;
+}
+
+.outer_all_user_div{
+    width: 40%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    top: 3rem;
+}
+
+.messsage_on_the_top_of_users{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.single_user_inner_div_all_users{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin: 1rem 0;
+    padding: 1rem;
+    display: flex;
+    align-items: start;
+}
+
+.left_side_picture_of_single_user{
+    margin-right: 1.4rem;
+}
+.upper_name_of_user_all_users a{
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.lower_email_of_user_all_users{
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.outer_request_main_div{
+    margin-top: 2rem;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 45%;
+}
+.heading_of_follow_requests{
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+.inner_request_main_div{
+    margin: 1rem 0;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.inner_request_title_div{
+    display: flex;
+    align-items: center;
+}
+
+.inner_request_title_text_div{
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+.buttons_div_accept_decline_for_request{
+    display: flex;
+    margin-top: 1rem;
+}
+
+.outer_most_show_profile_div{
+    width: 70%;;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 2rem;
+}
+
+.show_profile_upper_image_and_info_div{
+    display: flex;
+    align-items: center;
+}
+
+.left_side_profile_upper_image_div{
+
+}
+
+.right_side_profile_upper_div_info{
+    margin-left: 5rem;
+}
+
+.name_of_user_upper_part{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.email_of_user_upper_part{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.1rem;
+}
+
+.follwoing_and_followers_count_div{
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.followers_uppper_profile_div{
+    margin-left: 1rem;
+}
+.followers_uppper_profile_div span , .following_uppper_profile_div span{
+    font-weight: 600;
+}
+
+.action_button_for_follow_uper_part{
+    margin-left: 1rem;
+}
+
+.lower_user_own_shots_all{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.inner_lower_single_shot_display{
+    width: 25%;
+}
+
+.current_user_outer_div_profile{
+    width: 90%;
+    position: relative;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.left_side_profile_info_div_curret_user{
+    width: 25%;
+    display: flex;
+    flex-direction: column;   
+}
+
+.inner_div_for_current_user_profile{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.right_side_follower_and_following_div{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.following_div_current_user{
+    width: 45%;
+}
+
+.heading_of_following_user_div{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.display_of_following_user_div{
+    margin-top: 1rem;
+}
+
+.inner_single_follower_following_div{
+    margin: 1rem 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 7px;
+}
+
+.main_div_for_the_coversation_page{
+    display: flex;
+    width: 80%;
+    position: relative;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%);
+}
+.left_side_all_users_dialouge_box_div{
+    width: 40%;
+}
+.right_side_existing_conversation_div{
+    width: 60%;
+}
+
+.top_heading_for_all_users_conversation{
+    font-size: 2.3rem;
+    font-weight: 600;    
+}
+
+.all_users_div_for_the_conversation_lower{
+    margin-top: 1.5rem;
+}
+
+.create_a_conversation_with_user_button{
+    width: 70%;
+    font-size: 1.3rem;
+    margin: .5rem 0;
+    text-align: left;
+}
+
+.link_for_seding_messages_to_the_user{
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.main_message_sending_page{
+    margin-top: 1rem;
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.top_heading_of_the_send_message{
+    font-size: 2rem;
+    text-align: center;
+}
+.lower_messages_div_for_messages_page{
+    margin-top: 1rem;
+}
+.singel_message_box_div{
+    display: flex;
+    align-items: start;
+    margin: .5rem 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: .7rem;
+    border-radius: 10px;
+}
+.user_left_side_image_for_message_page{
+    margin-right: 1em;
+}
+.right_side_top_name_and_time_div{
+    display: flex;
+    align-items: center;
+}
+.right_side_top_user_name{
+    font-size: 1.1rem;
+}
+.right_side_top_user_time_for_message{
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: .6rem;
+}
+.right_side_bottom_message_body_of_message{
+    font-size: 1.1rem;
+}
+
+.create_a_message_form_div{
+    margin: 1rem 0;
+}
+.input_for_message_text_area_div{
+    height: 7rem;
+    width: 100%;
+    resize: none;
+    padding: .5rem;
+    border-radius: 8px;
+}

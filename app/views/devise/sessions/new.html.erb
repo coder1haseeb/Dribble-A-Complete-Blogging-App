@@ -1,0 +1,30 @@
+<div class="outer_form_div_main">
+  <h2>Login</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="inner_form_div">
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInputEmailLogin" %>
+        <%= f.label :email, class: "form-label", for: "floatingInputEmailLogin" %>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "floatingInputPasswordLogin" %>
+        <%= f.label :password, class: "form-label", for: "floatingInputPasswordLogin" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions" style="text-align: center;">
+        <%= f.submit "Log in", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+
+<div style="margin-top: 1rem; font-size: 1.1rem;">Don't have an Account? <%=link_to "Sign Up" , new_user_registration_path %></div>
+</div>
